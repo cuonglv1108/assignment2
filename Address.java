@@ -51,11 +51,9 @@ public  class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
+        return "Address:    " +
                 "webPageAddress='" + webPageAddress + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
-                ", telecomAddress='" + telecomAddress + '\'' +
-                ", civicAddress=" + civicAddress +
-                '}';
+                ", telecomAddress='" + telecomAddress + '\'';
     }
 }
