@@ -3,22 +3,26 @@ package One;
 import Two.*;
 
 import java.sql.SQLOutput;
+import java.util.Objects;
 
 
 public class Vaccine {
     public enum type_vaccine {
-        Moderna, Pfizer, AstraZeneca
+        Moderna, Pfizer, AstraZeneca, NULL
     }
     public enum clinic_address{
-        Stadium1, Stadium2, Stadium3, Stadium4
+        Stadium1, Stadium2, Stadium3, Stadium4, NULL
     }
-    protected static String day1;
-    protected static String day2;
-    private type_vaccine type;
-    private clinic_address cl_a;
+    protected  String day1;
+    protected  String day2;
+    private static type_vaccine type;
+    private static clinic_address cl_a;
 
     public Vaccine() {
-
+    day1 = "0";
+    day2 = "0";
+    type = type_vaccine.NULL;
+    cl_a = clinic_address.NULL;
     }
 
     public Vaccine(String day1, String day2, type_vaccine type, clinic_address cl_a) {
@@ -36,7 +40,7 @@ public class Vaccine {
         this.cl_a = cl_a;
     }
 
-    public String getDay1() {
+    public  String getDay1() {
         return day1;
     }
 
@@ -44,7 +48,7 @@ public class Vaccine {
         this.day1 = day1;
     }
 
-    public String getDay2() {
+    public  String getDay2() {
         return day2;
     }
 
@@ -90,4 +94,22 @@ public class Vaccine {
         System.out.println("Clinic: " + clinic_address.Stadium2 + " " + c.toString());
         System.out.println(test);
     }
+
+    @Override
+    public String toString() {
+        return "Vaccine{" +
+                "day1='" + day1 + '\'' +
+                ", day2='" + day2 + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vaccine)) return false;
+        Vaccine vaccine = (Vaccine) o;
+        return Objects.equals(day1, vaccine.day1) && Objects.equals(day2, vaccine.day2) && type == vaccine.type && cl_a == vaccine.cl_a;
+    }
+
+
 }
