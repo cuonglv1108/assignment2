@@ -11,31 +11,34 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     private static String [] monthly = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     private static Vaccine changetime;
-    private static int kq1 = 0;
+    private static Vaccine v3 = new Vaccine();
     public static void main(String[] args) {
-        // write your code here
+        int kq1 = 0;
         welcome();
         System.out.println("How many patients? ");
         int numberofPatients = scanner.nextInt();
         Patient[] patientDatabase = new Patient[numberofPatients];
         Vaccine[] vaccines = new Vaccine[numberofPatients];
         boolean [] tracePatient= new boolean[numberofPatients];
-        patientDatabase[0] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", null);
-        patientDatabase[1] = new Patient("Dung", 24, "levietcuongdn98@gmail.com", "0985001998", null);
-     //   Patient p1 = new Patient("Cuong", 23, "levietcuongdn98@gmail.com", "0985001998", null);
-      //  Patient p2 = new Patient("Cuong", 23, "levietcuongdn98@gmail.com", "0985001998", null);
-        vaccines[0] = new Vaccine("May 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium3);
-        vaccines[1] = new Vaccine("August 5, 2021", "August 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[0] = new Vaccine("May 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[1] = new Vaccine("May 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        patientDatabase[0] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[0]);
+        patientDatabase[1] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[1]);
+       // vaccines[1] = new Vaccine("August 5, 2021", "August 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
         for (int i = 0; i < numberofPatients; i++){
             kq1 = check_patient(vaccines[i].getDay2())-check_patient(vaccines[i].getDay1());
             if (kq1>=28 && kq1<=356) tracePatient[i] = true;
         }
-
-        Vaccine.Clinic1();
-        Vaccine.Clinic2();
+        if (patientDatabase[0].equals(patientDatabase[1])){
+            System.out.println("YES");
+        }else System.out.println("NO");
+        System.out.println(vaccines[0].toString1());
+        for (int i = 0; i < numberofPatients; i++) {
+            System.out.println(tracePatient[i]);
+        }
         changetime();
     }
 
@@ -80,7 +83,8 @@ public class Main {
 
     public static void changetime(){
         System.out.println("DO YOU WANT TO CHANGE THE DATE OF VACCINATION? ");
-        String t = scanner.nextLine();
+        Scanner scan = new Scanner(System.in);
+        String t = scan.nextLine();
         int kq1 = 1;
         do{
             if (t.equals("YES")) {
@@ -105,15 +109,14 @@ public class Main {
                     Vaccine.Clinic1();
                     System.out.println(v1.toString2());
                     Vaccine.Clinic2();
+                    break;
                 }
-                else System.out.println("Invalid day");
-                break;
-            } else
-                System.out.println("DO YOU WANT TO CHANGE AGAIN? ");
-            t = scanner.nextLine();
-            if (t.equals("NO")){
+                else {
+                    System.out.println("Invalid day");
+                }
                 break;
             }
+            if (t.equals("NO")) break;
         } while (kq1>0);
     }
 }
