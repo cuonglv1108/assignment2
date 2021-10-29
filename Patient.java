@@ -15,7 +15,7 @@ public class Patient extends Vaccine{
     }
 
     public Patient(String patient_name, long healthcare_num, String email_address, String phone_number, Vaccine vaccine) {
-        super();
+        super(vaccine.getDay1(), vaccine.getDay2(), vaccine.getType(), vaccine.getCl_a());
         this.patient_name = patient_name;
         this.healthcare_num = healthcare_num;
         this.email_address = email_address;
@@ -73,12 +73,19 @@ public class Patient extends Vaccine{
 
     @Override
     public String toString() {
-        return "Patient{" +
+        return "Patient:    " +
                 "patient_name='" + patient_name + '\'' +
                 ", healthcare_num=" + healthcare_num +
                 ", email_address='" + email_address + '\'' +
                 ", phone_number='" + phone_number + '\'' +
-                ", vaccine=" + vaccine +
-                '}';
+                ", vaccine=" + vaccine.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Patient)) return false;
+        Patient patient = (Patient) o;
+        return healthcare_num == patient.healthcare_num && Objects.equals(patient_name, patient.patient_name) && Objects.equals(email_address, patient.email_address) && Objects.equals(phone_number, patient.phone_number) && this.equals(vaccine);
     }
 }
