@@ -84,8 +84,10 @@ public class Patient extends Vaccine{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Patient)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Patient patient = (Patient) o;
-        return healthcare_num == patient.healthcare_num && Objects.equals(patient_name, patient.patient_name) && Objects.equals(email_address, patient.email_address) && Objects.equals(phone_number, patient.phone_number) && this.equals(vaccine);
+        return healthcare_num == patient.healthcare_num && Objects.equals(patient_name, patient.patient_name) && Objects.equals(email_address, patient.email_address) && Objects.equals(phone_number, patient.phone_number) && Objects.equals(vaccine, patient.vaccine);
     }
+
 }
