@@ -19,10 +19,10 @@ public class Vaccine {
     private static clinic_address cl_a;
 
     public Vaccine() {
-    day1 = "0";
-    day2 = "0";
-    type = type_vaccine.NULL;
-    cl_a = clinic_address.NULL;
+        day1 = "0";
+        day2 = "0";
+        type = type_vaccine.NULL;
+        cl_a = clinic_address.NULL;
     }
 
     public Vaccine(String day1, String day2, type_vaccine type, clinic_address cl_a) {
