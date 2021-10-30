@@ -23,56 +23,59 @@ public class Main {
         Patient[] patientDatabase = new Patient[numberofPatients];
         Vaccine[] vaccines = new Vaccine[numberofPatients];
         boolean [] tracePatient= new boolean[numberofPatients];
-        vaccines[0] = new Vaccine("May 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
-        vaccines[1] = new Vaccine("May 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[0] = new Vaccine("June 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[1] = new Vaccine("June 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[2] = new Vaccine("June 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[3] = new Vaccine("June 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        vaccines[4] = new Vaccine("June 5, 2021", "June 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
         patientDatabase[0] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[0]);
         patientDatabase[1] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[1]);
-       // vaccines[1] = new Vaccine("August 5, 2021", "August 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
+        patientDatabase[2] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[2]);
+        patientDatabase[3] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[3]);
+        patientDatabase[4] = new Patient("Hoang", 23, "levietcuongdn98@gmail.com", "0985001998", vaccines[4]);
+        // vaccines[1] = new Vaccine("August 5, 2021", "August 6, 2021", Vaccine.type_vaccine.Pfizer, Vaccine.clinic_address.Stadium2);
         for (int i = 0; i < numberofPatients; i++){
             kq1 = check_patient(vaccines[i].getDay2())-check_patient(vaccines[i].getDay1());
             if (kq1>=28 && kq1<=356) tracePatient[i] = true;
         }
-        if (patientDatabase[0].equals(patientDatabase[1])){
-            System.out.println("YES");
-        }else System.out.println("NO");
         System.out.println(vaccines[0].toString1());
         for (int i = 0; i < numberofPatients; i++) {
-            System.out.println(tracePatient[i]);
+            if (tracePatient[i] == false) System.out.println("The patient number " + i + " did not take fully vaccinated");
         }
         changetime();
     }
 
     public static int check_patient(String k){
         int dem =0;
-    String q = "";
-    String q1 = "";
+        String q = "";
+        String q1 = "";
         int year = 0, day = 0, month = 0;
         int kq = 0;
-    for (int i = 0; i<=k.length()-1; i++){
-        if (k.charAt(i) != ' ' && k.charAt(i) != ',') {
-            q = q + k.charAt(i);
-        } else{
-            if (dem == 0 && q != " ")   {
-                for (int j = 0 ; j<= monthly.length-1 ; j++){
-                    if (q.equals(monthly[j])) {
-                        month = j + 1;
-                        dem += 1;
-                        q="";
-                        break;
+        for (int i = 0; i<=k.length()-1; i++){
+            if (k.charAt(i) != ' ' && k.charAt(i) != ',') {
+                q = q + k.charAt(i);
+            } else{
+                if (dem == 0 && q != " ")   {
+                    for (int j = 0 ; j<= monthly.length-1 ; j++){
+                        if (q.equals(monthly[j])) {
+                            month = j + 1;
+                            dem += 1;
+                            q="";
+                            break;
+                        }
                     }
                 }
-            }
-            if (dem == 1 && q != "")
-            {
-                day = Integer.parseInt(q);
-                dem += 1;
-                q="";
+                if (dem == 1 && q != "")
+                {
+                    day = Integer.parseInt(q);
+                    dem += 1;
+                    q="";
+                }
             }
         }
-    }
-    if (dem == 2 && q != "") year = Integer.parseInt(q);
-    dem = Vaccine.set_time(year,month,day);
-    return dem;
+        if (dem == 2 && q != "") year = Integer.parseInt(q);
+        dem = Vaccine.set_time(year,month,day);
+        return dem;
     }
 
     public static void welcome(){
