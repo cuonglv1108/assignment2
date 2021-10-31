@@ -1,28 +1,28 @@
 package Two;
 
-public  class Address {
-    private String webPageAddress;
-    private String emailAddress;
-    private String telecomAddress;
-    private CivicAddress civicAddress;
-    public Address(){
-        webPageAddress = "null";
-        emailAddress = "null";
-        telecomAddress = "null";
-       // civicAddress = new CivicAddress();
-    }
-    public Address(Address a){
-        webPageAddress = a.webPageAddress;
-        emailAddress = a.emailAddress;
-        telecomAddress = a.telecomAddress;
-    }
+import java.util.Objects;
 
+public  class Address {
+    private  String webPageAddress;
+    private  String emailAddress;
+    private  String telecomAddress;
+    private  CivicAddress civicAddress;
     public Address(String webPageAddress, String emailAddress, String telecomAddress, CivicAddress civicAddress) {
         this.webPageAddress = webPageAddress;
         this.emailAddress = emailAddress;
         this.telecomAddress = telecomAddress;
         this.civicAddress = civicAddress;
     }
+    public Address(){
+    }
+
+    public Address(Address a){
+        webPageAddress = a.webPageAddress;
+        emailAddress = a.emailAddress;
+        telecomAddress = a.telecomAddress;
+    }
+
+
 
     public void setWebPageAddress(String s) {
         webPageAddress = s;
@@ -51,9 +51,20 @@ public  class Address {
 
     @Override
     public String toString() {
-        return "Address:    " +
+        return "Address{" +
                 "webPageAddress='" + webPageAddress + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
-                ", telecomAddress='" + telecomAddress + '\'';
+                ", telecomAddress='" + telecomAddress + '\'' +
+                ", civicAddress=" + civicAddress +
+                '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(webPageAddress, address.webPageAddress) && Objects.equals(emailAddress, address.emailAddress) && Objects.equals(telecomAddress, address.telecomAddress) && Objects.equals(civicAddress, address.civicAddress);
+    }
+
 }
