@@ -1,5 +1,7 @@
 package Two;
 
+import java.util.Objects;
+
 public class CivicAddress extends Address{
     private String civicAddress;
     public enum corresponding{
@@ -42,9 +44,19 @@ public class CivicAddress extends Address{
     @Override
     public String toString() {
         return "CivicAddress{" +
-                "civicAddress='" + civicAddress + '\'' +
+                "civicAddress='" + civicAddress.toUpperCase() + '\'' +
                 ", code=" + code +
                 ", postal_code='" + postal_code + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CivicAddress that = (CivicAddress) o;
+        return Objects.equals(civicAddress, that.civicAddress) && code == that.code && Objects.equals(postal_code, that.postal_code);
+    }
+
 }
