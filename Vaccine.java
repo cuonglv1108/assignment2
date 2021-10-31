@@ -13,8 +13,8 @@ public class Vaccine {
     public enum clinic_address{
         Stadium1, Stadium2, Stadium3, Stadium4, NULL
     }
-    protected  String day1;
-    protected  String day2;
+    protected static String day1;
+    protected static String day2;
     private static type_vaccine type;
     private static clinic_address cl_a;
 
@@ -40,7 +40,7 @@ public class Vaccine {
         this.cl_a = cl_a;
     }
 
-    public  String getDay1() {
+    public static String getDay1() {
         return day1;
     }
 
@@ -48,7 +48,7 @@ public class Vaccine {
         this.day1 = day1;
     }
 
-    public  String getDay2() {
+    public static String getDay2() {
         return day2;
     }
 
@@ -65,15 +65,6 @@ public class Vaccine {
     }
 
 
-
-    public String toString1() {
-        return "Dose1: " +  type + ", " +  getDay1() ;
-    }
-
-    public String toString2() {
-        return "Dose2: " +  type + ", " + getDay2() ;
-    }
-
     public static int set_time(int year, int month, int day){
         if (month < 3) {
             year--;
@@ -82,27 +73,23 @@ public class Vaccine {
         return 365*year + year/4 - year/100 + year/400 + (153*month - 457)/5 + day - 306;
     }
 
-    public static void Clinic1(){
+    public String Clinic1(){
         CivicAddress c = new CivicAddress("8680 rue Saint Denis ST.Montreal", CivicAddress.corresponding.AB,"H2P2H2");
         Address test =  new Address("https:clinicaddress.com","levietcuongdn98@gmail.com","0985001998", c);
-        System.out.println("Clinic: " + clinic_address.Stadium1 + " " + c.toString());
-        System.out.println(test);
+        return "Clinic: " + clinic_address.Stadium1 + " " + c.toString() + "\n" + test;
+
     }
-    public static void Clinic2(){
+    public String Clinic2(){
         CivicAddress c = new CivicAddress("8680 rue Saint Denis ST.Montreal", CivicAddress.corresponding.QC,"H2P2H2");
         Address test =  new Address("https:clinicaddress.com","levietcuongdn98@gmail.com","0985001998", c);
-        System.out.println("Clinic: " + clinic_address.Stadium2 + " " + c.toString());
-        System.out.println(test);
+        return "Clinic: " + clinic_address.Stadium3 + " " + c.toString() + "\n" + test;
     }
-
     @Override
     public String toString() {
-        return "Vaccine{" +
-                "day1='" + day1 + '\'' +
-                ", day2='" + day2 + '\'' +
-                '}';
+        String line = "Dose1: " +  type + ", " +  getDay1() + "\n" + Clinic1();
+        String line1 = "Dose2: " +  type + ", " + getDay2() + "\n" + Clinic2();
+        return "\n" + "Vaccine: " + line + "\n" + line1;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
