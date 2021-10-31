@@ -78,7 +78,7 @@ public class Patient extends Vaccine{
                 ", healthcare_num=" + healthcare_num +
                 ", email_address='" + email_address + '\'' +
                 ", phone_number='" + phone_number + '\'' +
-                ", vaccine=" + vaccine.toString();
+                vaccine.toString() + "\n";
     }
 
     @Override
