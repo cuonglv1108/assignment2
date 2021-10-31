@@ -1,14 +1,17 @@
 package Two;
 
-public class WebpageAddress extends Address {
+import java.util.Objects;
+
+public class WebPageAddress extends Address {
     private String URL;
-    public WebpageAddress() {
+    public WebPageAddress() {
         URL = "NULL";
     }
-    public WebpageAddress(String u) {
+    public WebPageAddress(String u) {
+        super(u,"","",null);
         URL = u;
     }
-    public WebpageAddress(WebpageAddress w) {
+    public WebPageAddress(WebPageAddress w) {
         URL = w.URL;
     }
     public void setWebPageAddress(String u) {
@@ -16,6 +19,14 @@ public class WebpageAddress extends Address {
     }
     public String getWebPageAddress() {
         return URL;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WebPageAddress that = (WebPageAddress) o;
+        return Objects.equals(URL, that.URL);
     }
 
 }
